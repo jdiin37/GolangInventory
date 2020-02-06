@@ -1,0 +1,94 @@
+{{template "header"}}
+{{template "nav" .}}
+{{template "activity-layout" .}}
+
+
+{{define "activity-form"}}
+    <form action="/activity" method="post">
+        <div class="form-group">
+            <label for="startTime">日期時間</label>
+            <div class="form-row">
+                <div class="col">
+                    <input type="date" class="form-control" id="startDate" name="startDate" placeholder="輸入開始日期" aria-describedby="startDateHelp">
+                    <small id="startDateHelp" class="form-text text-muted">開始日期時間</small>
+                </div>
+                <div class="col">
+                    <select class="form-control" id="startTime" name="startTime" placeholder="選擇開始時間">                             
+                    </select>
+                </div>
+                <div class="col">
+                    <input type="date" class="form-control" id="endDate"  name="endDate" placeholder="輸入結束日期" aria-describedby="endDateHelp">
+                    <small id="endDateHelp" class="form-text text-muted">結束日期時間</small>
+                </div>
+                <div class="col">
+                    <select class="form-control" id="endTime" name="endTime" placeholder="選擇結束時間">                             
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="county">縣市/地點</label>
+            <div class="form-row">
+                <div class="col-3">
+                    <select class="form-control" id="county" name="county">
+                        <option value="屏東">屏東</option>
+                        <option value="高雄">高雄</option>
+                        <option value="其它">其它</option>
+                    </select>
+                </div>
+                <div class="col-9">
+                    <input type="text" class="form-control" id="location" placeholder="地點" name="location">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="courtType">球場種類</label>
+            <select class="form-control" id="courtType" name="courtType">
+                <option value="硬地">硬地</option>
+                <option value="紅土">紅土</option>
+                <option value="草地">草地</option>
+                <option value="其它">其它</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="memo">備註</label>
+            <input type="text" class="form-control" id="memo" placeholder="備註" name="memo" aria-describedby="memoHelp">
+            <small id="memoHelp" class="form-text text-muted">例如：程度,自備球..等等</small>
+        </div>
+        <div class="form-group">
+            <label for="context">其它說明</label>
+            <textarea class="form-control" id="context" name="context" rows="5"></textarea>        
+        </div>
+        <button type="submit" class="btn btn-primary">送出</button>
+    </form>
+
+    <script>
+    $(function(){
+        let timeOption = {};
+        let j = 0;
+        for (i = 0; i <= 23; i++ ) {
+            while (j < 60) {
+                timeOption.value= i + ":" + (j===0?"00":j);
+                timeOption.text=i + ":" + (j===0?"00":j);
+                
+                $('#startTime').append(`<option value="${timeOption.value}"> 
+                                       ${timeOption.text} 
+                                  </option>`);
+                $('#endTime').append(`<option value="${timeOption.value}"> 
+                    ${timeOption.text} 
+                </option>`);
+                j = j +15;
+            }
+            j=0;
+        }
+        console.log(timeOption);
+
+    });
+    </script>
+
+{{end}}
+
+<script>
+$(function(){
+});
+</script>

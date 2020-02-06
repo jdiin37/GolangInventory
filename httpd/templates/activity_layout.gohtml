@@ -1,0 +1,18 @@
+{{define "activity-layout"}}
+<div class="container pt-4">
+    <div class="row">
+        <div class="col">
+        {{template "activity_bar" .}}
+        </div>
+    </div>
+    <div class="row pt-4">
+        {{ if eq (.page) ("list") }}
+            {{template "activity_list" .}}
+        {{else if eq (.page) ("mylist")}}
+            {{template "activity_mylist" .}}
+        {{else if eq (.page) ("oldlist")}}
+            {{template "activity_oldlist" .}}
+        {{end}}
+    </div>
+</div>
+{{end}}

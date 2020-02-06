@@ -1,0 +1,159 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Gin swagger",
+        "title": "Gin swagger",
+        "contact": {
+            "name": "jdiin37",
+            "email": "jdiin37@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080/api/v1",
+    "paths": {
+        "/article": {
+            "post": {
+                "consumes": [
+                    "application/x-json-stream"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "新增文章",
+                "operationId": "1",
+                "parameters": [
+                    {
+                        "description": "文章",
+                        "name": "article",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/articleHandler.articleAddPostResquest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Result"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/model.Result"
+                        }
+                    }
+                }
+            }
+        },
+        "/article/{id}": {
+            "get": {
+                "consumes": [
+                    "application/x-json-stream"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "取得文章",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Result"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "consumes": [
+                    "application/x-json-stream"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "刪除文章",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Result"
+                        }
+                    }
+                }
+            }
+        },
+        "/articles": {
+            "get": {
+                "consumes": [
+                    "application/x-json-stream"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "取得所有文章",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Result"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "articleHandler.articleAddPostResquest": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Result": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 0
+                },
+                "data": {
+                    "type": "object"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "回傳訊息"
+                }
+            }
+        }
+    }
+}

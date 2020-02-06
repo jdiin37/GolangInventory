@@ -1,0 +1,104 @@
+definitions:
+  articleHandler.articleAddPostResquest:
+    properties:
+      content:
+        type: string
+      type:
+        type: string
+    type: object
+  model.Result:
+    properties:
+      code:
+        example: 0
+        type: integer
+      data:
+        type: object
+      message:
+        example: 回傳訊息
+        type: string
+    type: object
+host: localhost:8080/api/v1
+info:
+  contact:
+    email: jdiin37@gmail.com
+    name: jdiin37
+  description: Gin swagger
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Gin swagger
+  version: "1.0"
+paths:
+  /article:
+    post:
+      consumes:
+      - application/x-json-stream
+      operationId: "1"
+      parameters:
+      - description: 文章
+        in: body
+        name: article
+        required: true
+        schema:
+          $ref: '#/definitions/articleHandler.articleAddPostResquest'
+          type: object
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Result'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 新增文章
+      tags:
+      - 文章
+  /article/{id}:
+    delete:
+      consumes:
+      - application/x-json-stream
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 刪除文章
+      tags:
+      - 文章
+    get:
+      consumes:
+      - application/x-json-stream
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 取得文章
+      tags:
+      - 文章
+  /articles:
+    get:
+      consumes:
+      - application/x-json-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 取得所有文章
+      tags:
+      - 文章
+swagger: "2.0"

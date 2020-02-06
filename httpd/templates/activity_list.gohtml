@@ -1,0 +1,39 @@
+
+{{ define "activity_list" }}
+  {{range $i, $v := .activitys.List}}
+    <div class="col-md-4 pb-4">
+      
+      <div class="card shadow">
+      <div class="d-flex flex-row-reverse">
+        <a href="/activity/detail/{{$v.ID}}" class="p-2 bg-warning text-white">查看</a>       
+        <div class="p-2 bg-primary text-white">參加</div>
+      </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            #{{$v.ID}}
+          </h5>
+          <p class="card-text"><i class="far fa-calendar-alt text-info"></i> {{$v.StartTime}} 至 {{$v.EndTime}}</p>
+          <p class="card-text"><i class="fas fa-map-marker-alt text-info"></i> {{$v.County}} {{$v.Location}}</p>
+          <p class="card-text"><i class="far fa-clipboard text-info"></i> {{$v.Memo}}</p>
+          <p class="card-text"><i class="far fa-user text-info"></i> {{$v.ApplyCount}} 人</p>
+          
+          {{if $.id}}
+            {{if eq ($.id) ($v.CreateUserID| toString)}}
+              <form action="/activity/DeleteOne" method="post" class="text-right">
+                <input type="hidden" name="activityId" value="{{$v.ID}}">
+                <input type="submit" class="btn btn-outline-danger" value="刪除" onclick="return confirm('確定要刪除 #{{$v.ID}} 嗎?');">
+              </form>
+            {{end}}
+          {{end}}
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>   
+    </div>  
+  {{end}}
+    
+<script>
+$(function(){
+    
+});
+</script>
+{{ end }}

@@ -1,0 +1,14 @@
+{{template "header"}}
+{{template "nav" .}}
+<div class="container">
+<br/>
+{{ if .error }}
+    <div class="alert alert-danger">
+        <strong>{{.error}}</strong>
+    </div>
+{{ else }}
+    <div class="alert alert-info">
+        <strong>請先登入</strong><a href="/" class="alert-link">首頁</a>
+    </div>
+{{ end }}
+</div>

@@ -1,0 +1,72 @@
+{{template "header"}}
+{{template "nav" .}}
+<div class="container p-4">
+    <div class="card">
+        <div class="card-header">User Profile</div>
+            <div class="card-body">
+            <div class="row">
+                <div class="col-sm">
+                    <div>
+                        <img src="{{ .user.Avatar.String }}" alt="avatar" class="rounded-circle" style="width:100%;">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <form method="post" action="/api/v1/userProfile" enctype="multipart/form-data" class="upload-form">
+                        <div class="form-group" hidden>
+                            <label for="user-id">id</label>
+                            <input type="text" id="user-id"
+                                name="id"
+                                value="{{ .user.ID }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-email">Email</label>
+                            <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp"
+                                name="email"
+                                readonly
+                                placeholder="Enter email"
+                                value="{{ .user.Email }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-name">匿稱</label>
+                            <input type="text" class="form-control" id="user-name" placeholder="匿稱" name="name"
+                                value="{{.user.Name}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-password">密碼</label>
+                            <input type="password" class="form-control" id="user-password" placeholder="密碼" name="password"
+                                value="{{.user.Password}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-avatar">上傳頭像</label>
+                            <input type="file" class="form-control-file" id="user-avatar" name="avatar-file" data-max-size="1048576">
+                        </div>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(function(){
+    var fileInput = $('.form-control-file');
+    var maxSize = fileInput.data('max-size');
+    $('.upload-form').submit(function(e){
+        if(fileInput.get(0).files.length){
+            var fileSize = fileInput.get(0).files[0].size; // in bytes
+            if(fileSize>maxSize){
+                alert('file size is more then' + maxSize + ' bytes');
+                return false;
+            }else{
+                //alert('file size is correct- '+fileSize+' bytes');
+            }
+        }else{
+            //alert('choose file, please');
+            //return false;
+        }
+
+    });
+
+
+});
+</script>

@@ -1,0 +1,33 @@
+{{define "login-form"}}
+    <form action="/api/v1/userLogin" method="post">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="輸入 email">
+            <small id="emailHelp" class="form-text text-muted">我們會嚴格保存您的電子郵件</small>
+        </div>
+        <div class="form-group">
+            <label for="password">密碼</label>
+            <input type="password" class="form-control" id="password" placeholder="密碼" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">登入</button>
+    </form>
+{{end}}
+
+{{define "register-form"}}
+    <form action="/api/v1/userRegister" method="post">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="輸入 email">
+            <small id="emailHelp" class="form-text text-muted">我們會嚴格保存您的電子郵件</small>
+        </div>
+        <div class="form-group">
+            <label for="password">密碼</label>
+            <input type="password" class="form-control" id="password" placeholder="密碼" name="password">
+        </div>
+        <div class="form-group">
+            <label for="password-again">確認密碼</label>
+            <input type="password" class="form-control" id="password-again" placeholder="再次輸入密碼" name="password-again">
+        </div>
+        <button type="submit" class="btn btn-primary">註冊</button>
+    </form>
+{{end}}

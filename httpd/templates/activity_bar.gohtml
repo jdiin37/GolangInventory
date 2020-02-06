@@ -1,0 +1,29 @@
+
+{{ define "activity_bar" }}
+<ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+    <a class="nav-link active" href="/activity/list">未來的團</a>
+    </li>
+    {{ if .email }}
+        <li class="nav-item">
+        <a class="nav-link" href="/activity/mylist">參加的團</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/activity/oldlist">歷史的團</a>
+        </li>
+    
+    {{else}}
+        <li class="nav-item">
+        <a class="nav-link disabled" href="#">參加的團</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link disabled" href="#">歷史的團</a>
+        </li>
+    {{end}}
+</ul>
+<script>
+$(function(){
+    
+});
+</script>
+{{ end }}
