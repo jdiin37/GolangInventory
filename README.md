@@ -1,0 +1,3 @@
+# GolangInventory
+
+Golang training
